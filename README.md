@@ -33,38 +33,38 @@ depending on the client's preference.
 
 ### Phase 1: Reverse Proxy
 
-    Implement basic request forwarding.
-    Route requests to mock services based on URL paths.
+Route requests to mock services based on URL paths.
+Implement basic request forwarding.
 
 ### Phase 2: Caching
 
-    Add caching for responses based on the requested resource.
-    Use Cache-Control and ETag headers to make it HTTP-compliant.
+Add caching for responses based on the requested resource.
+Use Cache-Control and ETag headers to make it HTTP-compliant.
 
 ### Phase 3: Rate Limiting
 
-    Implement rate limiting per client IP using a token bucket algorithm.
-    Use the rate library to track and throttle clients.
+Use the rate library to track and throttle clients.
+Implement rate limiting per client IP using a token bucket algorithm.
 
 ### Phase 4: Content Negotiation
 
-    Serve responses in JSON or XML based on the Accept header.
+Serve responses in JSON or XML based on the Accept header.
 
 ### Phase 5: Error Handling
 
-    Standardize error messages across all routes.
-    Implement retry headers for specific error cases.
+Standardize error messages across all routes.
+Implement retry headers for specific error cases.
 
 ### Phase 6: HTTP/2 Support
 
-    Enable HTTP/2 for the API gateway.
+Enable HTTP/2 for the API gateway.
 
 ### Phase 7: Monitoring
 
-    Log request and response times.
-    Track and visualize the most hit endpoints using Grafana or a simple dashboard.
+Log request and response times.
+Track and visualize the most hit endpoints using Grafana or a simple dashboard.
 
 ### Phase 8: Authentication
 
-    Add token-based authentication for access control.
-    Validate tokens before forwarding requests to backend services
+Add token-based authentication for access control.
+Validate tokens before forwarding requests to backend services
