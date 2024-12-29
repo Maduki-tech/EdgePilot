@@ -1,1 +1,1 @@
-logs/access.log
+logs/*.log

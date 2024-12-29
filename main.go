@@ -1,16 +1,23 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 var logger *log.Logger
 
-func main() {
+type request struct {
+	Name string
+}
 
-	logfile := "logs/access.log"
+func main() {
+	dateTime := time.Now().Format("2006-01-02T15:04:05")
+	logfile := "logs/" + dateTime + ".log"
+
 	logIo, err := os.OpenFile(logfile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
@@ -37,15 +44,15 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 
 	// POST REQUEST
 	if r.Method == http.MethodPost {
-		var message []byte
-		_, err := r.Body.Read(message)
+		var req request
+		err := json.NewDecoder(r.Body).Decode(&req)
 
 		if err != nil {
-			logger.Println(err)
+			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
 
-		logger.Println(message)
+		logger.Println(req)
 
 	}
 }
